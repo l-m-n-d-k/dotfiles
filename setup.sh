@@ -14,7 +14,7 @@ cd yay-git
 makepkg -si
 
 # Установка утилит
-sudo pacman -S fish neovim tmux openssh exa ncdu sxiv zathura git
+sudo pacman -S fish neovim tmux openssh ncdu sxiv zathura git
 yay -S btop # btop может быть доступен через AUR
 
 # Установка GitHub CLI
