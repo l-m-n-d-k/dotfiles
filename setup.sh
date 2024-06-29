@@ -1,36 +1,23 @@
 #!/bin/bash
 
-# Обновление системы
+# Обновление системы и установка пакетов
 sudo pacman -Syu
 
-# Установка необходимых пакетов
-sudo pacman -S --needed base-devel git wget yajl
+sudo pacman -S git firefox telegram-desktop btop fish neovim tmux openssh ncdu sxiv zathura bat discord 
 
-# Установка yay для доступа к AUR
-cd /opt
-sudo git clone https://aur.archlinux.org/yay-git.git
-sudo chown -R $USER:$USER ./yay-git
-cd yay-git
-makepkg -si
-
-# Установка утилит
-sudo pacman -S fish neovim tmux openssh ncdu sxiv zathura batcat
-yay -S btop # btop может быть доступен через AUR
-
-# Установка GitHub CLI
-sudo pacman -S gh
-
-# Конфигурация fish как оболочки по умолчанию
+# Изменение оболочки на fish
 chsh -s /usr/bin/fish
 
-# Создание базовых конфигурационных файлов
-mkdir -p ~/.config/fish
-echo "set -gx EDITOR nvim" >> ~/.config/fish/config.fish
-echo "alias ls='exa'" >> ~/.config/fish/config.fish
-echo "alias top='btop'" >> ~/.config/fish/config.fish
+# Создание SSH ключа для GitHub
+ssh-keygen -t ed25519 -C "dima2642007@gmail.com" -f ~/.ssh/github_id_ed25519 -N ""
+echo "SSH ключ для GitHub создан. Скопируйте следующий ключ и добавьте его в ваш GitHub аккаунт:"
+cat ~/.ssh/github_id_ed25519.pub
 
-mkdir -p ~/.config/nvim
-echo "set number" >> ~/.config/nvim/init.vim # Пример настройки для nvim
+# Установка yay для работы с AUR
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+cd ..
+rm -rf yay
 
 echo "Установка и настройка завершены!"
-
