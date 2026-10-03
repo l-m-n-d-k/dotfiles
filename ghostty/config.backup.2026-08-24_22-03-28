@@ -1,0 +1,10 @@
+theme = Tomorrow Night Burns
+
+window-decoration = false
+window-padding-x = 10
+window-padding-y = 10
+
+# gtk-tabs-location = bottom
+
+focus-follows-mouse = true
+
